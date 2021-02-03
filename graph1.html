@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js'></script>
+        <link rel="stylesheet" href="https://thashimoto27.github.io/Keidanren/graph_style.css" type="text/css">
+        <meta charset="UTF-8">
+        <title>テレワークアンケート結果</title>
+
+    </head>
+    <body>
+        
+     <div class = style>
+        <p class="logo"><img src="logo.png" class="imglogo"></p>
+        <p class="title">経団連テレワークアンケート</p><br><br>
+        グラフの変換
+        <!-- データ直接入力版　-->
+        <div class="wrap-chart">
+                <!-- Canvasでグラフ描画-->
+                <div class="chart-container">
+                    <canvas id="myChart" width="500" height="300">ここにチャート表示</canvas>
+                </div>
+                <br>
+                <input type="button" id="barb" value="棒グラフ"/>
+                <input type="button" id="lineb" value="線グラフ"/>
+
+                
+            <!-- グラフ用javascript-->
+            <script>
+                //初期設定
+                var charttype; //グラフのタイプを決める変数
+                charttype = 'line';
+
+                drawChart(charttype); // グラフ描画関数（下）を呼び出す
+
+
+                //ボタンクリック時の動作
+                document.getElementById('barb').onclick = function() {
+                // すでにグラフ（インスタンス）が生成されている場合は、グラフを破棄する
+                if (myChart) {myChart.destroy();}
+                drawChart('bar'); // グラフを再描画
+                }
+                document.getElementById('lineb').onclick = function() {
+                // すでにグラフ（インスタンス）が生成されている場合は、グラフを破棄する
+                if (myChart) {myChart.destroy();}
+                drawChart('line'); // グラフを再描画
+                }
+
+
+                //（一番重要）グラフ描画関数
+                function drawChart(charttype){
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    window.myChart = new Chart(ctx, {
+                        type: charttype, //グラフのタイプ
+                            data: {
+                            labels: ['７割以上', '5割以上～7割未満', '5割未満～3割以上', '3割未満'], // 左軸
+                            datasets: [{
+                                label: '出勤者割合',
+                                data: [185, 136, 93, 87], //データ
+                                backgroundColor: 'rgba(112,182,255,1)', //背景色
+                                hoverBackgroundColor: 'rgba(7,129,255,1)', //ホバー時のグラフの色
+                                fill: false,
+                            }]
+                            },
+                        options: {
+                            title: { //タイトル
+                                display: true,
+                                text: '事業継続上テレワーク実施が困難な従業員を除く対象事業拠点*の従業員数に対する現在の出勤者*の削減割合',
+                                padding: 8,
+                                fontSize: 20, //フォントサイズ
+                                fontStyle: 'normal'
+                            },
+                            legend: { // 凡例
+                                position: 'bottom',
+                                labels: {
+                                    fontSize: 14,
+                                    padding: 10
+                                }
+                            },
+                            scales: {
+                                xAxes: [{ //X軸
+                                    scaleLabel: {
+                                        fontSize: 12
+                                    },
+                                    ticks: {
+                                        fontSize: 10
+                                    },
+                                    categoryPercentage: 0.6
+                                }],
+                                yAxes: [{ //Y軸
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: '社数',
+                                        fontSize: 12
+                                    },
+                                    ticks: {
+                                        min: 0,
+                                        max: 200, //Y軸の最大値
+                                        stepSize: 50, //Y軸のステップ数
+                                        beginAtZero: true,
+                                    }
+                                }]
+                            },
+                            maintainAspectRatio: false
+                        }
+                    });
+                }
+            </script>
+        </div>
+        </div>
+    </div>
+    </body>
+</html>
