@@ -1,0 +1,67 @@
+@charset "utf-8";
+        .style{
+            width:700px;
+            text-align: center;
+            margin-right: auto;
+            margin-left : auto;
+        }
+        p.title{
+             position: relative;
+             text-align: center;
+             font-size: x-large;
+             color: #616161;
+             font-family: 'ＭＳ Ｐゴシック';
+             width:60%;
+             margin-left: auto;
+             margin-right: auto;
+        }
+        p.title:after {
+            position: absolute;
+                 content: " ";
+             display: block;
+             border-bottom: solid 1px #616161;
+            bottom: -20px;
+            margin-left: 35%;
+            margin-right: 35%;
+            width:30%;
+        }
+        p.logo{
+            text-align: right;
+        }
+        img.imglogo{
+            width: 20%;
+            height: 20%;
+        }
+        .chart-container{
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            height: 95%;
+        }
+
+
+
+
+        .input_item ul li {
+            list-style-type: none;
+            font-size: 14px;
+            margin: 0 0 5px 10px;
+            display:inline;
+        }
+        .input_item ul li input[type="checkbox"]{
+            width: 10px;
+            height: 10px;
+            margin: 0px 5px 0 0;
+            display:inline-block;
+            vertical-align: middle;
+        }
+        .input_item ul li label{
+            display:inline-block;
+            vertical-align:middle;
+            line-height: 10px;
+        }
+        .input_item ul li.locked{
+            opacity: 0.75;
+            color: #aaa;
+        }
